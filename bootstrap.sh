@@ -51,3 +51,26 @@ echo "-- Install Composer --"
 curl -s https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
 sudo chmod +x /usr/local/bin/composer
+
+echo "-- Install XDebug --"
+git clone https://github.com/xdebug/xdebug.git
+cd xdebug
+phpize
+./configure --enable-xdebug
+make
+sudo cp modules/xdebug.so /usr/lib/php/20160303/
+sudo sh -c 'echo "zend_extension=xdebug.so" >> /etc/php/7.1/apache2/php.ini'
+sudo sh -c 'echo "xdebug.remote_enable=1" >> /etc/php/7.1/apache2/php.ini'
+sudo sh -c 'echo "xdebug.remote_connect_back=1" >> /etc/php/7.1/apache2/php.ini'
+sudo sh -c 'echo "xdebug.remote_port=9000" >> /etc/php/7.1/apache2/php.ini'
+sudo sh -c 'echo "xdebug.max_nesting_level=300" >> /etc/php/7.1/apache2/php.ini'
+sudo sh -c 'echo "xdebug.remote_autostart=1" >> /etc/php/7.1/apache2/php.ini'
+sudo sh -c 'echo "xdebug.scream=0" >> /etc/php/7.1/apache2/php.ini'
+sudo sh -c 'echo "xdebug.cli_color=1" >> /etc/php/7.1/apache2/php.ini'
+sudo sh -c 'echo "xdebug.show_local_vars=1" >> /etc/php/7.1/apache2/php.ini'
+sudo sh -c 'echo "xdebug.remote_log=/var/log/xdebug.log" >> /etc/php/7.1/apache2/php.ini'
+sudo sh -c 'echo "xdebug.remote_host=10.0.2.2" >> /etc/php/7.1/apache2/php.ini'
+sudo service apache2 restart
+sudo service php7.1-fpm restart
+cd ..
+rm -rf xdebug
