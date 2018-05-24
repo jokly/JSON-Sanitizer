@@ -1,5 +1,5 @@
 <?php
-    include __DIR__ . '/../src/ErrorPOST.php';
+    require_once __DIR__ . '/../src/ErrorPOST.php';
 
     $data = json_decode(file_get_contents('php://input'), true);
 
