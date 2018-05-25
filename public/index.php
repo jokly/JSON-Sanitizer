@@ -1,9 +1,17 @@
 <?php
+    require_once __DIR__ . '/../src/Sanitizer.php';
     require_once __DIR__ . '/../src/ErrorPOST.php';
+    require_once __DIR__ . '/../src/SanitizerException.php';
 
-    $data = json_decode(file_get_contents('php://input'), true);
+    use Sanitizer\Sanitizer;
+    use SanitizerException\InvalidJsonException;
 
-    if (is_null($data)) {
-        ErrorPOST\send_error('Invalid json object');
+    $sanitizer = new Sanitizer();
+
+    try {
+        $sanitizer->sanitize(file_get_contents('php://input'));
+    }
+    catch (InvalidJsonException $e) {
+        ErrorPOST\send_error($e->getMessage());
     }
 ?>
