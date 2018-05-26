@@ -15,7 +15,7 @@
             'phone' => 'RuleType\phone_rule',
         ];
 
-        private $result = [];
+        private $sanitized_object = [];
         private $errors = [];
 
         public function add(string $name, $callback) {
@@ -42,7 +42,7 @@
 
                 if ($this->validate_index('data', $elem) && $is_set_type) {
                     try {
-                        $result[] = $function_name($elem['data']);
+                        $sanitized_object[] = $function_name($elem['data']);
                     }
                     catch (SanitizerException $e) {
                         $this->add_error($e);
@@ -55,6 +55,10 @@
 
         public function get_errors() : array {
             return $this->errors;
+        }
+
+        public function get_sanitized_object() : array {
+            return $this->sanitized_object;
         }
 
         private function validate_index(string $index, $element) : bool {
