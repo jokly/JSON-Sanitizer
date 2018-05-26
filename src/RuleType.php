@@ -1,13 +1,20 @@
 <?php
     namespace RuleType;
 
+    require_once 'SanitizerException.php';
+
+    use SanitizerException\{ InvalidIntException };
+
     // integer: ^[+-]?\d+$
     // float: ^[+-]?\d+\.?\d*$
     // string: -
     // phone: TODO
 
     function int_rule(string $data) : int {
-        return 5;
+        if (!\preg_match('/^[+-]?\d+$/', $data))
+            throw new InvalidIntException($data);
+
+        return intval($data);
     }
 
     function float_rule(string $data) : float {
