@@ -8,10 +8,12 @@
 
     $sanitizer = new Sanitizer();
 
-    try {
-        $sanitizer->sanitize(file_get_contents('php://input'));
+    $res = $sanitizer->sanitize(file_get_contents('php://input'));
+
+    if ($res) {
+        echo 'OK';
     }
-    catch (InvalidJsonException $e) {
-        ErrorPOST\send_error($e->getMessage());
+    else {
+        ErrorPOST\send_errors($sanitizer->get_errors());
     }
 ?>

@@ -4,7 +4,7 @@
     require_once 'RuleType.php';
     require_once 'SanitizerException.php';
     
-    use SanitizerException\{ InvalidJsonException };
+    use SanitizerException\{ SanitizerException, InvalidJsonException };
 
     class Sanitizer {
         private $sanitizers = [
@@ -14,16 +14,29 @@
             'phone' => 'RuleType\phone_rule',
         ];
 
-        function add(string $name, $callback) {
+        private $errors = [];
+
+        public function add(string $name, $callback) {
             $this->sanitizers[$name] = $callback;
         }
 
-        function sanitize(string $json_str) {
+        public function sanitize(string $json_str) : bool {
             $data = json_decode($json_str, true);
 
             if (is_null($data)) {
-                throw new InvalidJsonException();
+                $this->add_error(new InvalidJsonException());
+                return false;
             }
+
+            return true;
+        }
+
+        public function get_errors() : array {
+            return $this->errors;
+        }
+
+        private function add_error(SanitizerException $e) {
+            $this->errors[] = $e->getMessage();
         }
     }
 ?>

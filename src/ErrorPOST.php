@@ -1,14 +1,16 @@
 <?php
     namespace ErrorPOST;
 
-    function send_error(string $msg) {
-        $json_error = [
-            'error' => [
-                'msg' => $msg
-            ]
+    function send_errors(array $errors) {
+        $json_errors = [
+            'errors' => [ ]
         ];
 
+        foreach ($errors as $error) {
+            $json_errors['errors'][] = ['msg' => $error];
+        }
+
         header('Content-Type: application/json');
-        echo json_encode($json_error);
+        echo json_encode($json_errors);
     }
 ?>
