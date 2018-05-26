@@ -1,19 +1,18 @@
 <?php
     require_once __DIR__ . '/../src/Sanitizer.php';
-    require_once __DIR__ . '/../src/ErrorPOST.php';
-    require_once __DIR__ . '/../src/SanitizerException.php';
+    require_once __DIR__ . '/../src/SanitizerResponse.php';
 
     use Sanitizer\Sanitizer;
-    use SanitizerException\InvalidJsonException;
+    use SanitizerResponse\SanitizerResponse;
 
     $sanitizer = new Sanitizer();
 
     $res = $sanitizer->sanitize(file_get_contents('php://input'));
 
     if ($res) {
-        echo 'OK';
+        SanitizerResponse::send_sanitized_object($sanitizer->get_sanitized_object());
     }
     else {
-        ErrorPOST\send_errors($sanitizer->get_errors());
+        SanitizerResponse::send_errors($sanitizer->get_errors());
     }
 ?>

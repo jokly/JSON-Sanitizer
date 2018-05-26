@@ -36,13 +36,14 @@
                         $function_name = $this->get_rule_func($elem['type']);
                     }
                     catch (UnknownTypeException $e) {
+                        $is_set_type = false;
                         $this->add_error($e);
                     }
                 }
 
                 if ($this->validate_index('data', $elem) && $is_set_type) {
                     try {
-                        $sanitized_object[] = $function_name($elem['data']);
+                        $this->sanitized_object[] = $function_name($elem['data']);
                     }
                     catch (SanitizerException $e) {
                         $this->add_error($e);
