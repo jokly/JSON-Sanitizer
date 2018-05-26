@@ -58,3 +58,16 @@
     ...
 ]
 ```
+
+# Errors
+
+```
+{
+    "errors": [
+        {
+            "msg": "Invalid json object"
+        },
+        ...
+    ]
+}
+```
