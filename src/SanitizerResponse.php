@@ -16,7 +16,7 @@
             ];
 
             foreach ($errors as $error) {
-                $json_errors['errors'][] = ['msg' => $error];
+                $json_errors['errors'][] = ['msg' => $error->getMessage()];
             }
 
             self::send_object($json_errors);

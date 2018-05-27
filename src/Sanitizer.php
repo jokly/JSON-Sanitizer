@@ -78,7 +78,7 @@
         }
 
         private function add_error(SanitizerException $e) {
-            $this->errors[] = $e->getMessage();
+            $this->errors[] = $e;
         }
     }
 ?>
