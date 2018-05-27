@@ -74,3 +74,7 @@ sudo service apache2 restart
 sudo service php7.1-fpm restart
 cd ..
 rm -rf xdebug
+
+echo "-- Install PHPUnit --"
+cd /vagrant
+composer update
