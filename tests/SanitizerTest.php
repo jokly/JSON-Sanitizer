@@ -14,6 +14,7 @@
         /**
          * @dataProvider int_provider
          * @dataProvider float_provider
+         * @dataProvider string_provider
          */
         public function test_simple_object(string $type, string $data, $res_data) {
             $obj = [
@@ -50,6 +51,23 @@
                 ['float', '-0005.9', -5.9],
                 ['float', '-32.', -32],
             ];
+        }
+
+        public function string_provider() {
+            $strings = [
+                'Hello',
+                '\ntest\n',
+                '   ',
+                '  here   !',
+                '!@#$%^&*(())'
+            ];
+
+            $data_set = [];
+            foreach($strings as $str) {
+                $data_set[] = ['string', $str, $str];
+            }
+
+            return $data_set;
         }
     }
 ?>
