@@ -5,7 +5,7 @@
     require_once 'SanitizerException.php';
     
     use SanitizerException\{ SanitizerException, InvalidJsonException, UndefinedIndexException,
-        UnknownTypeException };
+        UnknownTypeException, InvalidTypeException };
 
     class Sanitizer {
         private $sanitizers = [
@@ -45,7 +45,7 @@
                     try {
                         $this->sanitized_object[] = $function_name($elem['data']);
                     }
-                    catch (SanitizerException $e) {
+                    catch (InvalidTypeException $e) {
                         $this->add_error($e);
                     }
                 }

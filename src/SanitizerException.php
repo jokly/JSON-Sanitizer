@@ -25,9 +25,21 @@
         }
     }
 
-    class InvalidIntException extends SanitizerException {
+    class InvalidTypeException extends SanitizerException {
+        function __construct($type_string, $data, $code = 0, \Exception $previous = null) {
+            parent::__construct("Invalid $type_string: '$data'", 4, $previous);
+        }
+    }
+
+    class InvalidIntException extends InvalidTypeException {
         function __construct($data, $code = 0, \Exception $previous = null) {
-            parent::__construct("Invalid integer: '$data'", 4, $previous);
+            parent::__construct('integer', $data, 4, $previous);
+        }
+    }
+
+    class InvalidFloatException extends InvalidTypeException {
+        function __construct($data, $code = 0, \Exception $previous = null) {
+            parent::__construct('float', $data, 4, $previous);
         }
     }
 ?>

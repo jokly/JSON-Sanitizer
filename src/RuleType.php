@@ -3,7 +3,7 @@
 
     require_once 'SanitizerException.php';
 
-    use SanitizerException\{ InvalidIntException };
+    use SanitizerException\{ InvalidIntException, InvalidFloatException };
 
     // integer: ^[+-]?\d+$
     // float: ^[+-]?\d+\.?\d*$
@@ -14,11 +14,14 @@
         if (!\preg_match('/^[+-]?\d+$/', $data))
             throw new InvalidIntException($data);
 
-        return intval($data);
+        return \intval($data);
     }
 
     function float_rule(string $data) : float {
-        return 5.1;
+        if (!\preg_match('/^[+-]?\d+\.?\d*$/', $data))
+            throw new InvalidFloatException($data);
+
+        return \floatval($data);
     }
 
     function string_rule(string $data) : string {
