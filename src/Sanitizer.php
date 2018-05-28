@@ -62,7 +62,7 @@
             return $this->sanitized_object;
         }
 
-        private function validate_index(string $index, $element) : bool {
+        private function validate_index($index, $element) : bool {
             if (\array_key_exists($index, $element))
                 return true;
 
