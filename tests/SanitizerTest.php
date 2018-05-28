@@ -15,6 +15,7 @@
          * @dataProvider int_provider
          * @dataProvider float_provider
          * @dataProvider string_provider
+         * @dataProvider phone_provider
          */
         public function test_simple_object(string $type, string $data, $res_data) {
             $obj = [
@@ -59,7 +60,7 @@
                 '\ntest\n',
                 '   ',
                 '  here   !',
-                '!@#$%^&*(())'
+                '!@#$%^&*(())',
             ];
 
             $data_set = [];
@@ -68,6 +69,14 @@
             }
 
             return $data_set;
+        }
+
+        public function phone_provider() {
+            return [
+                ['phone', '8(914)432-76-00', '79144327600'],
+                ['phone', '8(000)000-00-00', '70000000000'],
+                ['phone', '8(999)111-55-10', '79991115510'],
+            ];
         }
     }
 ?>
