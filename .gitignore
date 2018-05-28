@@ -19,4 +19,5 @@ composer.phar
 # composer.lock
 
 ### Logs ###
+logs/
 *.log
