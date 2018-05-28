@@ -25,7 +25,7 @@
     }
 
     function string_rule(string $data) : string {
-        return '';
+        return \strval($data);
     }
 
     function phone_rule(string $data) : string {
