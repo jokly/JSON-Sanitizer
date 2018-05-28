@@ -3,12 +3,7 @@
 
     require_once 'SanitizerException.php';
 
-    use SanitizerException\{ InvalidIntException, InvalidFloatException };
-
-    // integer: ^[+-]?\d+$
-    // float: ^[+-]?\d+\.?\d*$
-    // string: -
-    // phone: TODO
+    use SanitizerException\{ InvalidIntException, InvalidFloatException, InvalidPhoneException };
 
     function int_rule(string $data) : int {
         if (!\preg_match('/^[+-]?\d+$/', $data))
@@ -29,6 +24,12 @@
     }
 
     function phone_rule(string $data) : string {
-        return '';
+        if (!\preg_match('/^8\((\d{3})\)(\d{3})(\-(\d{2})){2}$/', $data))
+            throw new InvalidPhoneException($data);
+
+        $data = \str_replace(['(', ')', '-'], '', $data);
+        $data[0] = '7';
+
+        return $data;
     }
 ?>
