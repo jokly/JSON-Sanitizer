@@ -43,6 +43,57 @@
 }
 ```
 
+5. Array
+```
+{
+    "data": [
+        {
+            "data": "-5",
+            "type": "int"
+        },
+        {
+            "data": "3.25",
+            "type": "float"
+        }
+    ],
+    "type": "array"
+}
+```
+
+6. Typed array
+```
+{
+    "data": [
+        {
+            "data": "Hello",
+            "type": "string"
+        },
+        {
+            "data": "World!",
+            "type": "string"
+        }
+    ],
+    "type": "array:string"
+}
+```
+
+7. Dictionary
+```
+{
+    "data": {
+        "my_str": {
+            "data": "Hello",
+            "type": "string"
+        },
+        "secod_el": {
+            "data": "79.1",
+            "type": "float"
+        }
+    },
+    "type": "dict"
+}
+```
+
 # JSON data example
 
 ```
