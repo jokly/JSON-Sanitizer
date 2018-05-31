@@ -11,6 +11,14 @@
             $this->sanitizer = new Sanitizer();
         }
 
+        private function check_object($obj, $res_data) {
+            $res = $this->sanitizer->sanitize(json_encode($obj));
+            $this->assertTrue($res);
+
+            $res_arr = $this->sanitizer->get_sanitized_object();
+            $this->assertEquals($res_arr[0], $res_data);
+        }
+
         /**
          * @dataProvider int_provider
          * @dataProvider float_provider
@@ -25,11 +33,7 @@
                 ]
             ];
 
-            $res = $this->sanitizer->sanitize(json_encode($obj));
-            $this->assertTrue($res);
-
-            $res_arr = $this->sanitizer->get_sanitized_object();
-            $this->assertEquals($res_arr[0], $res_data);
+            $this->check_object($obj, $res_data);
         }
 
         public function int_provider() {
@@ -97,11 +101,7 @@
                 ];
             }
 
-            $res = $this->sanitizer->sanitize(json_encode($obj));
-            $this->assertTrue($res);
-
-            $res_arr = $this->sanitizer->get_sanitized_object();
-            $this->assertEquals($res_arr[0], $res_data);
+            $this->check_object($obj, $res_data);
         }
 
         public function array_provider() {
