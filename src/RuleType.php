@@ -32,4 +32,8 @@
 
         return $data;
     }
+
+    function array_rule(array $data) : array {
+        return $data;
+    }
 ?>

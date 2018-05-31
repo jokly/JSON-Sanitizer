@@ -25,26 +25,32 @@
         }
     }
 
+    class RequiredTypeException extends SanitizerException {
+        function __construct($type, $required_type, $code = 4, $previous = null) {
+            parent::__construct("Element must beof the type '$required_type', '$type' given", $code, $previous);
+        }
+    }
+
     class InvalidTypeException extends SanitizerException {
-        function __construct($type_string, $data, $code = 4, \Exception $previous = null) {
+        function __construct($type_string, $data, $code = 5, \Exception $previous = null) {
             parent::__construct("Invalid $type_string: '$data'", $code, $previous);
         }
     }
 
     class InvalidIntException extends InvalidTypeException {
-        function __construct($data, $code = 5, \Exception $previous = null) {
+        function __construct($data, $code = 6, \Exception $previous = null) {
             parent::__construct('integer', $data, $code, $previous);
         }
     }
 
     class InvalidFloatException extends InvalidTypeException {
-        function __construct($data, $code = 6, \Exception $previous = null) {
+        function __construct($data, $code = 7, \Exception $previous = null) {
             parent::__construct('float', $data, $code, $previous);
         }
     }
 
     class InvalidPhoneException extends InvalidTypeException {
-        function __construct($data, $code = 7, \Exception $previous = null) {
+        function __construct($data, $code = 8, \Exception $previous = null) {
             parent::__construct('phone', $data, $code, $previous);
         }
     }
