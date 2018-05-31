@@ -20,8 +20,8 @@
         public function test_simple_object(string $type, string $data, $res_data) {
             $obj = [
                 [
-                    'data' => "$data",
-                    'type' => "$type"
+                    'data' => $data,
+                    'type' => $type
                 ]
             ];
 
@@ -76,6 +76,41 @@
                 ['phone', '8(914)432-76-00', '79144327600'],
                 ['phone', '8(000)000-00-00', '70000000000'],
                 ['phone', '8(999)111-55-10', '79991115510'],
+            ];
+        }
+
+        /** 
+         * @dataProvider array_provider
+        */
+        public function test_array_object(string $type, array $data, array $res_data) {
+            $obj = [
+                [
+                    'data' => [],
+                    'type' => $type
+                ]
+            ];
+
+            foreach($data as $elem) {
+                $obj[0]['data'][] = [
+                    'data' => $elem[0],
+                    'type' => $elem[1]
+                ];
+            }
+
+            $res = $this->sanitizer->sanitize(json_encode($obj));
+            $this->assertTrue($res);
+
+            $res_arr = $this->sanitizer->get_sanitized_object();
+            $this->assertEquals($res_arr[0], $res_data);
+        }
+
+        public function array_provider() {
+            return [
+                ['array:int', [], []],
+                ['array:int', [['5', 'int'], ['3', 'int'], ['-1', 'int']], [5, 3, -1]],
+                ['array', [], []],
+                ['array', [['5', 'int'], ['5.1', 'float'], ['Hello', 'string']], [5, 5.1, 'Hello']],
+                ['array', [['8(914)222-92-09', 'phone'], ['-123', 'int']], ['79142229209', -123]],
             ];
         }
     }
