@@ -85,6 +85,7 @@
 
         /** 
          * @dataProvider array_provider
+         * @dataProvider dict_provider
         */
         public function test_array_object(string $type, array $data, array $res_data) {
             $obj = [
@@ -94,10 +95,10 @@
                 ]
             ];
 
-            foreach($data as $elem) {
-                $obj[0]['data'][] = [
-                    'data' => $elem[0],
-                    'type' => $elem[1]
+            foreach($data as $key => $value) {
+                $obj[0]['data'][$key] = [
+                    'data' => $value[0],
+                    'type' => $value[1]
                 ];
             }
 
@@ -111,6 +112,16 @@
                 ['array', [], []],
                 ['array', [['5', 'int'], ['5.1', 'float'], ['Hello', 'string']], [5, 5.1, 'Hello']],
                 ['array', [['8(914)222-92-09', 'phone'], ['-123', 'int']], ['79142229209', -123]],
+            ];
+        }
+
+        public function dict_provider() {
+            return [
+                ['dict', [], []],
+                ['dict', ['hello' => ['Hello', 'string']], ['hello' => 'Hello']],
+                ['dict', ['first' => ['5', 'int'], 'second' => ['Hello', 'string']], ['first' => 5, 'second' => 'Hello']],
+                ['dict', ['float' => ['0.32', 'float'], 'phone' => ['8(914)222-92-09', 'phone']], ['float' => 0.32, 'phone' => '79142229209']],
+                ['dict', [555 => ['test', 'string'], -1 => ['12', 'int'], 0 => ['1.5', 'float']], [555 => 'test', -1 => 12, 0 => 1.5]],
             ];
         }
     }
