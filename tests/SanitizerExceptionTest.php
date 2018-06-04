@@ -79,6 +79,7 @@
                 [['data' => '5.1', 'type' => 'int'], 'InvalidIntException'],
                 [['data' => '--3.1', 'type' => 'float'], 'InvalidFloatException'],
                 [['data' => '2348762', 'type' => 'phone'], 'InvalidPhoneException'],
+                [['data' => ['2348762'], 'type' => 'string'], 'UnexpectedTypeException'],
             ];
         }
     }
