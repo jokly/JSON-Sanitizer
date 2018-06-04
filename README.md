@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jokly/JSON-Sanitizer.svg?branch=master)](https://travis-ci.org/jokly/JSON-Sanitizer)
+
 # Requirements
 1. [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
 2. [Vagrant](https://www.vagrantup.com/downloads.html) >= 2.0
