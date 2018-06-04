@@ -36,4 +36,8 @@
     function array_rule(array $data) : array {
         return $data;
     }
+
+    function dict_rule(array $data) : array {
+        return $data;
+    }
 ?>

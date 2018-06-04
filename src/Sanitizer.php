@@ -14,10 +14,11 @@
             'string' => 'RuleType\string_rule',
             'phone' => 'RuleType\phone_rule',
             'array' => 'RuleType\array_rule',
+            'dict' => 'RuleType\dict_rule',
         ];
 
         private $iterable_types = [
-            'array'
+            'array', 'dict',
         ];
 
         private $sanitized_object = [];
@@ -51,7 +52,7 @@
         private function iterate_json_object($json_object, $required_type = null) : array {
             $sanitized_object = [];
 
-            foreach ($json_object as $elem) {
+            foreach ($json_object as $key => $elem) {
                 if ($is_valid_type = $this->validate_index('type', $elem))
                 {
                     $type = $this->parse_type($elem['type'])[0];
@@ -77,7 +78,7 @@
                             $data = $this->iterate_json_object($data, $inner_required_type);
                         }
 
-                        $sanitized_object[] = $data;
+                        $sanitized_object[$key] = $data;
                     }
                     catch (InvalidTypeException $e) {
                         $this->add_error($e);
