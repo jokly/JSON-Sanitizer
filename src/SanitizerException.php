@@ -33,7 +33,7 @@
 
     class UnexpectedTypeException extends SanitizerException {
         function __construct($type, $code = 5, $previous = null) {
-            parent::__construct("Unexpected type '$type'", $code, $previous);
+            parent::__construct("Unexpected type: '$type'", $code, $previous);
         }
     }
 
