@@ -27,7 +27,7 @@
 
     class RequiredTypeException extends SanitizerException {
         function __construct($type, $required_type, $code = 4, $previous = null) {
-            parent::__construct("Element must beof the type '$required_type', '$type' given", $code, $previous);
+            parent::__construct("Element must be of the type '$required_type', '$type' given", $code, $previous);
         }
     }
 
