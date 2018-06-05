@@ -1,5 +1,4 @@
 <?php
-    // @codeCoverageIgnoreStart
     namespace SanitizerResponse;
 
     class SanitizerResponse {
@@ -28,6 +27,4 @@
             echo json_encode($object);
         }
     }
-    
-    // @codeCoverageIgnoreEnd
 ?>
