@@ -114,12 +114,47 @@
 
 # Errors
 
+1. `InvalidJsonException`
+```
+Invalid json object
+```
+
+2. `UndefinedIndexException`
+```
+Undefinde index: <index>
+```
+
+3. `UnknownTypeException`
+```
+Unknown type: <type>
+```
+
+4. `RequiredTypeException`
+```
+Element must be of the type <required_type>, <given type> given
+```
+
+5. `UnexpectedTypeException`
+```
+Unexpected type: <type>
+```
+
+6. `InvalidTypeException => { InvalidIntException, InvalidFloatException, InvalidPhoneException }`
+```
+Invalid <expected type: integer/float/phone>: <invalid data>
+```
+
+# Errors example
+
 ```
 {
     "errors": [
         {
-            "msg": "Invalid json object"
+            "msg": "Undefinde index: 'data'"
         },
+        {
+            "msg": "Invalid 'integer': '5.1'"
+        }
         ...
     ]
 }
