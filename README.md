@@ -11,6 +11,12 @@
 3. `vagrant plugin install vagrant-vbguest`
 4. `vagrant up`
 
+# How to run tests and code coverage
+1. `vagrant ssh`
+2. `cd /vagrant`
+3. `make test`
+4. `make coverage`
+
 # Available types
 
 1. Integer
