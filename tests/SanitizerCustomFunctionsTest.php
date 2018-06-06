@@ -4,7 +4,7 @@
 
     use PHPUnit\Framework\TestCase;
     use Sanitizer\Sanitizer;
-    use SanitizerException\InvalidTypeException;
+    use Sanitizer\InvalidTypeException;
 
     class SanitizerCustomFunctionsTest extends TestCase {
         private $sanitizer;

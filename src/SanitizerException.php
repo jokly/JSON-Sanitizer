@@ -1,5 +1,5 @@
 <?php
-    namespace SanitizerException;
+    namespace Sanitizer;
 
     class SanitizerException extends \Exception {
         function __construct($message, $code = 0, \Exception $previous = null) {

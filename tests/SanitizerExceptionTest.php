@@ -4,8 +4,9 @@
 
     use PHPUnit\Framework\TestCase;
     use Sanitizer\Sanitizer;
-    use SanitizerException\{ InvalidJsonException, UndefinedIndexException, RequiredTypeException,
-        UnknownTypeException };
+    use Sanitizer\{ InvalidJsonException, UndefinedIndexException, RequiredTypeException,
+        UnknownTypeException, UnexpectedTypeException, InvalidIntException, InvalidFloatException,
+        InvalidPhoneException };
 
     class SanitizerExceptionTest extends TestCase {
         private $sanitizer;
@@ -71,15 +72,15 @@
             $res = $this->sanitizer->sanitize(json_encode([$data]));
 
             $this->assertFalse($res);
-            $this->assertFalse($this->sanitizer->get_errors()[0] instanceof $exception_class);
+            $this->assertTrue($this->sanitizer->get_errors()[0] instanceof $exception_class);
         }
 
         function invalid_type_provider() {
             return [
-                [['data' => '5.1', 'type' => 'int'], 'InvalidIntException'],
-                [['data' => '--3.1', 'type' => 'float'], 'InvalidFloatException'],
-                [['data' => '2348762', 'type' => 'phone'], 'InvalidPhoneException'],
-                [['data' => ['2348762'], 'type' => 'string'], 'UnexpectedTypeException'],
+                [['data' => '5.1', 'type' => 'int'], InvalidIntException::class],
+                [['data' => '--3.1', 'type' => 'float'], InvalidFloatException::class],
+                [['data' => '2348762', 'type' => 'phone'], InvalidPhoneException::class],
+                [['data' => ['2348762'], 'type' => 'string'], UnexpectedTypeException::class],
             ];
         }
     }

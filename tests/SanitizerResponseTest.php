@@ -4,7 +4,7 @@
 
     use PHPUnit\Framework\TestCase;
     use Sanitizer\Sanitizer;
-    use SanitizerResponse\SanitizerResponse;
+    use Sanitizer\SanitizerResponse;
 
     class SanitizerResponseTest extends TestCase {
         private $sanitizer;

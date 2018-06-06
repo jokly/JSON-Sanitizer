@@ -4,7 +4,7 @@
     require_once 'RuleType.php';
     require_once 'SanitizerException.php';
     
-    use SanitizerException\{ SanitizerException, InvalidJsonException, UndefinedIndexException,
+    use Sanitizer\{ SanitizerException, InvalidJsonException, UndefinedIndexException,
         UnknownTypeException, RequiredTypeException, UnexpectedTypeException, InvalidTypeException };
 
     class Sanitizer {

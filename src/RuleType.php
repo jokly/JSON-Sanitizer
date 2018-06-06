@@ -3,7 +3,7 @@
 
     require_once 'SanitizerException.php';
 
-    use SanitizerException\{ InvalidIntException, InvalidFloatException, InvalidPhoneException };
+    use Sanitizer\{ InvalidIntException, InvalidFloatException, InvalidPhoneException };
 
     function int_rule(string $data) : int {
         if (!\preg_match('/^[+-]?\d+$/', $data))

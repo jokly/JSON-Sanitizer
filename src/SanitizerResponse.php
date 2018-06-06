@@ -1,5 +1,5 @@
 <?php
-    namespace SanitizerResponse;
+    namespace Sanitizer;
 
     class SanitizerResponse {
         public static function send_sanitized_object(array $sanitized_object) {
