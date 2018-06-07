@@ -1,158 +1,175 @@
+# JSON-Sanitizer
+
 [![Build Status](https://travis-ci.org/jokly/JSON-Sanitizer.svg?branch=master)](https://travis-ci.org/jokly/JSON-Sanitizer)
 
-# Requirements
+## Requirements
+
 1. [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
 2. [Vagrant](https://www.vagrantup.com/downloads.html) >= 2.0
 3. Plugin vagrant-vbguest (`vagrant plugin install vagrant-vbguest`)
 
-# Installation
+## Installation
+
 1. `git clone https://github.com/jokly/JSON-Sanitizer.git`
 2. `cd JSON-Sanitizer`
 3. `vagrant plugin install vagrant-vbguest`
 4. `vagrant up`
 
-# How to run tests and code coverage
+## How to run tests and code coverage
+
 1. `vagrant ssh`
 2. `cd /vagrant`
 3. `make test`
 4. `make coverage`
 
-# Available types
+## Available types
 
 1. Integer
-```
-{
-    "data": "3",
-    "type": "int"
-}
-```
+
+    ```json
+    {
+        "data": "3",
+        "type": "int"
+    }
+    ```
 
 2. Float
-```
-{
-    "data": "-5.3",
-    "type": "float"
-}
-```
+
+    ```json
+    {
+        "data": "-5.3",
+        "type": "float"
+    }
+    ```
 
 3. String
-```
-{
-    "data": "Hello World!",
-    "type": "string"
-}
-```
+
+    ```json
+    {
+        "data": "Hello World!",
+        "type": "string"
+    }
+    ```
 
 4. Phone number
-```
-{
-    "data": "8(950)288-56-23",
-    "type": "phone"
-}
-```
+
+    ```json
+    {
+        "data": "8(950)288-56-23",
+        "type": "phone"
+    }
+    ```
 
 5. Array
-```
-{
-    "data": [
-        {
-            "data": "-5",
-            "type": "int"
-        },
-        {
-            "data": "3.25",
-            "type": "float"
-        }
-    ],
-    "type": "array"
-}
-```
+
+    ```json
+    {
+        "data": [
+            {
+                "data": "-5",
+                "type": "int"
+            },
+            {
+                "data": "3.25",
+                "type": "float"
+            }
+        ],
+        "type": "array"
+    }
+    ```
 
 6. Typed array
-```
-{
-    "data": [
-        {
-            "data": "Hello",
-            "type": "string"
-        },
-        {
-            "data": "World!",
-            "type": "string"
-        }
-    ],
-    "type": "array:string"
-}
-```
+
+    ```json
+    {
+        "data": [
+            {
+                "data": "Hello",
+                "type": "string"
+            },
+            {
+                "data": "World!",
+                "type": "string"
+            }
+        ],
+        "type": "array:string"
+    }
+    ```
 
 7. Dictionary
-```
-{
-    "data": {
-        "my_str": {
-            "data": "Hello",
-            "type": "string"
+
+    ```json
+    {
+        "data": {
+            "my_str": {
+                "data": "Hello",
+                "type": "string"
+            },
+            "secod_el": {
+                "data": "79.1",
+                "type": "float"
+            }
         },
-        "secod_el": {
-            "data": "79.1",
-            "type": "float"
-        }
-    },
-    "type": "dict"
-}
-```
+        "type": "dict"
+    }
+    ```
 
-# JSON data example
+## JSON data example
 
-```
+```json
 [
     {
         "data": "15",
-        "type": "int"                                                                                      
+        "type": "int"
     },
     {
         "data": "7.1",
         "type": "float"
-    },
-    ...
+    }
 ]
 ```
 
-# Errors
+## Errors
 
 1. `InvalidJsonException`
-```
-Invalid json object
-```
+
+    ```php
+    "Invalid json object"
+    ```
 
 2. `UndefinedIndexException`
-```
-Undefinde index: <index>
-```
+
+    ```php
+    "Undefinde index: <index>"
+    ```
 
 3. `UnknownTypeException`
-```
-Unknown type: <type>
-```
+
+    ```php
+    "Unknown type: <type>"
+    ```
 
 4. `RequiredTypeException`
-```
-Element must be of the type <required_type>, <given type> given
-```
+
+    ```php
+    "Element must be of the type <required_type>, <given type> given"
+    ```
 
 5. `UnexpectedTypeException`
-```
-Unexpected type: <type>
-```
+
+    ```php
+    "Unexpected type: <type>"
+    ```
 
 6. `InvalidTypeException => { InvalidIntException, InvalidFloatException, InvalidPhoneException }`
-```
-Invalid <expected type: integer/float/phone>: <invalid data>
-```
 
-# Errors example
+    ```php
+    "Invalid <expected type: integer/float/phone>: <invalid data>"
+    ```
 
-```
+## Errors example
+
+```json
 {
     "errors": [
         {
@@ -161,7 +178,6 @@ Invalid <expected type: integer/float/phone>: <invalid data>
         {
             "msg": "Invalid 'integer': '5.1'"
         }
-        ...
     ]
 }
 ```
